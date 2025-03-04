@@ -15,12 +15,42 @@ go get -u github.com/golang/protobuf/protoc-gen-go
 go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
 ```
 
-4- Instalar evans:
+---
+
+### Banco de dados: Criar categories
+```bash
+sqlite3 db.sqlite3
+create table categories (id string, name string, description string);
+```
+
+---
+
+### Evans - gRPC client
+
+Instalar evans:
 ```bash
 brew tap ktr0731/evans
 brew install evans
 ```
 
+nota: port must be :50051
+
+Rodar app
+```bash
+go run cmd/grpcServer/main.go
+```
+
+Rodar evans:
+```bash
+evans -r repl
+package pb
+service CategoryService
+```
+
+Criar tabela categories
+```bash
+call CreateCategory
+```
 
 ## Projeto
 

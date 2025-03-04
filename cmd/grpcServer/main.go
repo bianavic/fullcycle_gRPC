@@ -2,12 +2,14 @@ package main
 
 import (
 	"database/sql"
+	"net"
+
 	"github.com/bianavic/fullcycle_gRPC/internal/database"
 	"github.com/bianavic/fullcycle_gRPC/internal/pb"
 	"github.com/bianavic/fullcycle_gRPC/internal/service"
+	_ "github.com/mattn/go-sqlite3"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
-	"net"
 )
 
 func main() {
