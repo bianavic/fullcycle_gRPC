@@ -53,6 +53,7 @@ Criar tabela categories
 ```bash
 call CreateCategory
 ```
+![grpc1.png](assets/images/grpc1.png)
 
 ## Projeto
 

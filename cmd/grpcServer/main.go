@@ -20,6 +20,10 @@ func main() {
 	}
 	defer db.Close()
 
+	if err := initializeDatabase(db); err != nil {
+		panic(err)
+	}
+
 	categoryDB := database.NewCategory(db)
 	categoryService := service.NewCategoryService(*categoryDB)
 	// le e processa a propria informacao
@@ -36,4 +40,18 @@ func main() {
 	if err := grpcServer.Serve(listener); err != nil {
 		panic(err)
 	}
+}
+
+func initializeDatabase(db *sql.DB) error {
+	query := `CREATE TABLE IF NOT EXISTS categories (
+		id TEXT PRIMARY KEY,
+		name TEXT,
+		description TEXT
+	);`
+
+	_, err := db.Exec(query)
+	if err != nil {
+		panic(err)
+	}
+	return err
 }
