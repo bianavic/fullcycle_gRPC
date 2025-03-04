@@ -49,17 +49,24 @@ package pb
 service CategoryService
 ```
 
-Criar tabela categories
+Criar categories
 ```bash
 call CreateCategory
 ```
 ![grpc1.png](assets/images/grpc1.png)
 
-Listar
+Listar categories
 ```bash
 call ListCategories
 ```
 ![grpc2.png](assets/images/grpc2.png)
+
+Pegar categories por id
+```bash
+call GetCategory
+```
+![grpc3.png](assets/images/grpc3.png)
+
 
 ## Projeto
 
