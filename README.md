@@ -55,6 +55,12 @@ call CreateCategory
 ```
 ![grpc1.png](assets/images/grpc1.png)
 
+Listar
+```bash
+call ListCategories
+```
+![grpc2.png](assets/images/grpc2.png)
+
 ## Projeto
 
 Gerar entidades e interfaces - chamada do plugin para o arquivo proto
