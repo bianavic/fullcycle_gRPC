@@ -17,7 +17,7 @@ func NewCategoryService(db database.Category) *CategoryService {
 	return &CategoryService{CategoryDB: db}
 }
 
-func (c *CategoryService) CreateCategory(ctx context.Context, in *pb.CreateCategoryRequest) (*pb.CategoryResponse, error) {
+func (c *CategoryService) CreateCategory(ctx context.Context, in *pb.CreateCategoryRequest) (*pb.Category, error) {
 	category, err := c.CategoryDB.Create(in.Name, in.Description) // in vem da request
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "Error creating category: %v", err)
@@ -27,7 +27,5 @@ func (c *CategoryService) CreateCategory(ctx context.Context, in *pb.CreateCateg
 		Name:        category.Name,
 		Description: *category.Description,
 	}
-	return &pb.CategoryResponse{
-		Category: categoryResponse,
-	}, err
+	return categoryResponse, err
 }

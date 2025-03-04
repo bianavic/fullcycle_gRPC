@@ -15,9 +15,17 @@ go get -u github.com/golang/protobuf/protoc-gen-go
 go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
 ```
 
+4- Instalar evans:
+```bash
+brew tap ktr0731/evans
+brew install evans
+```
+
+
 ## Projeto
 
 Gerar entidades e interfaces - chamada do plugin para o arquivo proto
 ```
 protoc --go_out=. --go-grpc_out=. proto/course_category.proto
 ```
+
