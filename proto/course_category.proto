@@ -27,6 +27,8 @@ service CategoryService {
   rpc CreateCategory(CreateCategoryRequest) returns (Category) {}
   // enviando stream de dados: varias requisições, retorna uma lista de categorias
   rpc CreateCategoryStream(stream CreateCategoryRequest) returns (CategoryList) {}
+  // enviando stream de dados: envia uma requisicao, retorna uma categoria (bidirecional)
+  rpc CreateCategoryStreamBidirectional(stream CreateCategoryRequest) returns (stream Category) {}
   rpc ListCategories(blank) returns (CategoryList) {}
   rpc GetCategory(CategoryGetRequest) returns (Category) {}
 }

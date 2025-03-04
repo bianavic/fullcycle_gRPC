@@ -74,8 +74,14 @@ call CreateCategoryStream
 ```
 ![grpc4.png](assets/images/grpc4.png)
 
+## Stream de dados bidirecional
+Enviar stream de dados bidirecional
+```bash
+call CreateCategoryStreamBidirectional
+```
+![grpc5.png](assets/images/grpc5.png)
 
-## Projeto
+## Gerar proto
 
 Gerar entidades e interfaces - chamada do plugin para o arquivo proto
 ```
