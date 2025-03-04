@@ -4,6 +4,7 @@ import (
 	"context"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"io"
 
 	"github.com/bianavic/fullcycle_gRPC/internal/database"
 	"github.com/bianavic/fullcycle_gRPC/internal/pb"
@@ -66,4 +67,29 @@ func (c *CategoryService) GetCategory(ctx context.Context, in *pb.CategoryGetReq
 	}
 
 	return categoryResponse, nil
+}
+
+func (c *CategoryService) CreateCategoryStream(stream pb.CategoryService_CreateCategoryStreamServer) error {
+	categories := &pb.CategoryList{}
+	// loop infinito responsavel por mandar stream de dados para o client
+	for {
+		category, err := stream.Recv() // receive the stream
+		if err == io.EOF {             // end of file verification
+			return stream.SendAndClose(categories) // send the stream and close the connection
+		}
+		if err != nil {
+			return status.Errorf(codes.Internal, "Error receiving category: %v", err)
+		}
+
+		categoryResult, err := c.CategoryDB.Create(category.Name, category.Description)
+		if err != nil {
+			return status.Errorf(codes.Internal, "Error creating category: %v", err)
+		}
+
+		categories.Categories = append(categories.Categories, &pb.Category{
+			Id:          categoryResult.ID,
+			Name:        categoryResult.Name,
+			Description: *categoryResult.Description,
+		})
+	}
 }

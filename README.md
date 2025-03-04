@@ -61,11 +61,18 @@ call ListCategories
 ```
 ![grpc2.png](assets/images/grpc2.png)
 
-Pegar categories por id
+Pegar category por id
 ```bash
 call GetCategory
 ```
 ![grpc3.png](assets/images/grpc3.png)
+
+## Stream de dados
+Enviar stream de dados (preenche e ctrl + d)
+```bash
+call CreateCategoryStream
+```
+![grpc4.png](assets/images/grpc4.png)
 
 
 ## Projeto
