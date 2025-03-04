@@ -7,13 +7,14 @@ import (
 	"github.com/bianavic/fullcycle_gRPC/internal/database"
 	"github.com/bianavic/fullcycle_gRPC/internal/pb"
 	"github.com/bianavic/fullcycle_gRPC/internal/service"
-	_ "github.com/mattn/go-sqlite3"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
-	db, err := sql.Open("sqlite3", "./db.sqlite3")
+	db, err := sql.Open("sqlite3", "./database.db")
 	if err != nil {
 		panic(err)
 	}
@@ -25,7 +26,7 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 	pb.RegisterCategoryServiceServer(grpcServer, categoryService)
-	reflection.Register(grpcServer)
+	reflection.Register(grpcServer) // usando reflection para usar evans
 
 	listener, err := net.Listen("tcp", ":50051")
 	if err != nil {

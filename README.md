@@ -33,7 +33,9 @@ brew tap ktr0731/evans
 brew install evans
 ```
 
-nota: port must be :50051
+nota: 
+port must be :50051
+utilizar reflection para acessar os serviços (reflection)
 
 Rodar app
 ```bash
